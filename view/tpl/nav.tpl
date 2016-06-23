@@ -17,37 +17,41 @@
 			</button>
 			{{/if}}
 			{{if $userinfo}}
-				<img class="dropdown-toggle fakelink" data-toggle="dropdown" id="avatar" src="{{$userinfo.icon}}" alt="{{$userinfo.name}}"><span class="caret" id="usermenu-caret"></span>
-				{{if $localuser}}
-					<ul class="dropdown-menu" role="menu" aria-labelledby="avatar">
-						{{foreach $nav.usermenu as $usermenu}}
-						<li role="presentation"><a href="{{$usermenu.0}}" title="{{$usermenu.3}}" role="menuitem" id="{{$usermenu.4}}">{{$usermenu.1}}</a></li>
-						{{/foreach}}
-						<li role="presentation" class="divider"></li>
-						{{if $nav.profiles}}<li role="presentation"><a href="{{$nav.profiles.0}}" title="{{$nav.profiles.3}}" role="menuitem" id="{{$nav.profiles.4}}">{{$nav.profiles.1}}</a></li>{{/if}}
-						{{if $nav.settings}}<li role="presentation"><a href="{{$nav.settings.0}}" title="{{$nav.settings.3}}" role="menuitem" id="{{$nav.settings.4}}">{{$nav.settings.1}}</a></li>{{/if}}
-						{{if $nav.manage}}<li role="presentation"><a href="{{$nav.manage.0}}" title="{{$nav.manage.3}}" role="menuitem" id="{{$nav.manage.4}}">{{$nav.manage.1}}</a></li>{{/if}}	
-						{{if $nav.channels}}
-						{{foreach $nav.channels as $chan}}
-							<li role="presentation" class="nav-channel-select"><a href="manage/{{$chan.channel_id}}" title="{{$chan.channel_name}}" role="menuitem">{{$chan.channel_name}}</a></li>
-						{{/foreach}}
-						{{/if}}
-						{{if $nav.admin}}
-						<li role="presentation" class="divider"></li>
-						<li role="presentation"><a href="{{$nav.admin.0}}" title="{{$nav.admin.3}}" role="menuitem" id="{{$nav.admin.4}}">{{$nav.admin.1}}</a></li>
-						{{/if}}
-						{{if $nav.logout}}
-						<li role="presentation" class="divider"></li>
-						<li role="presentation"><a href="{{$nav.logout.0}}" title="{{$nav.logout.3}}" role="menuitem" id="{{$nav.logout.4}}">{{$nav.logout.1}}</a></li>
-						{{/if}}
-					</ul>
-				{{else}}
-					{{if $nav.lock}}
-						<ul class="dropdown-menu" role="menu" aria-labelledby="avatar">
-							<li role="presentation"><a href="{{$nav.lock.0}}" title="{{$nav.lock.3}}" role="menuitem">{{$nav.lock.3}}</a></li>
+			<div id="avatar-dropdown" class="dropdown">
+          		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+
+					<img id="avatar" src="{{$userinfo.icon}}" alt="{{$userinfo.name}}"><span class="caret" id="usermenu-caret"></span>
+					{{if $localuser}}
+						<ul class="dropdown-menu" role="menu" aria-labelledby="avatar-dropdown">
+							{{foreach $nav.usermenu as $usermenu}}
+							<li role="presentation"><a href="{{$usermenu.0}}" title="{{$usermenu.3}}" role="menuitem" id="{{$usermenu.4}}">{{$usermenu.1}}</a></li>
+							{{/foreach}}
+							<li role="presentation" class="divider"></li>
+							{{if $nav.profiles}}<li role="presentation"><a href="{{$nav.profiles.0}}" title="{{$nav.profiles.3}}" role="menuitem" id="{{$nav.profiles.4}}">{{$nav.profiles.1}}</a></li>{{/if}}
+							{{if $nav.settings}}<li role="presentation"><a href="{{$nav.settings.0}}" title="{{$nav.settings.3}}" role="menuitem" id="{{$nav.settings.4}}">{{$nav.settings.1}}</a></li>{{/if}}
+							{{if $nav.manage}}<li role="presentation"><a href="{{$nav.manage.0}}" title="{{$nav.manage.3}}" role="menuitem" id="{{$nav.manage.4}}">{{$nav.manage.1}}</a></li>{{/if}}	
+							{{if $nav.channels}}
+							{{foreach $nav.channels as $chan}}
+								<li role="presentation" class="nav-channel-select"><a href="manage/{{$chan.channel_id}}" title="{{$chan.channel_name}}" role="menuitem">{{$chan.channel_name}}</a></li>
+							{{/foreach}}
+							{{/if}}
+							{{if $nav.admin}}
+							<li role="presentation" class="divider"></li>
+							<li role="presentation"><a href="{{$nav.admin.0}}" title="{{$nav.admin.3}}" role="menuitem" id="{{$nav.admin.4}}">{{$nav.admin.1}}</a></li>
+							{{/if}}
+							{{if $nav.logout}}
+							<li role="presentation" class="divider"></li>
+							<li role="presentation"><a href="{{$nav.logout.0}}" title="{{$nav.logout.3}}" role="menuitem" id="{{$nav.logout.4}}">{{$nav.logout.1}}</a></li>
+							{{/if}}
 						</ul>
+					{{else}}
+						{{if $nav.lock}}
+							<ul class="dropdown-menu" role="menu" aria-labelledby="avatar-dropdown">
+								<li role="presentation"><a href="{{$nav.lock.0}}" title="{{$nav.lock.3}}" role="menuitem">{{$nav.lock.3}}</a></li>
+							</ul>
+						{{/if}}
 					{{/if}}
-				{{/if}}
+				</a></div>
 			{{/if}}
 		</div>
 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
