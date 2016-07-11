@@ -4170,25 +4170,12 @@ function update_remote_id($channel,$post_id,$webpage,$pagetitle,$namespace,$remo
 		// sixteen bytes of the mid - which makes the link portable and not quite as daunting
 		// as the entire mid. If it were the post_id the link would be less portable.
 
-		$r = q("select * from item_id where iid = %d and uid = %d and service = '%s' limit 1",
+		\Zotlabs\Lib\IConfig::Set(
 			intval($post_id),
-			intval($channel['channel_id']),
-			dbesc($page_type)
+			'system',
+			$page_type,
+			($pagetitle) ? $pagetitle : substr($mid,0,16)
 		);
-		if($r) {
-			q("update item_id set sid = '%s' where id = %d",
-				dbesc(($pagetitle) ? $pagetitle : substr($mid,0,16)),
-				intval($r[0]['id'])
-			);
-		}
-		else {
-			q("insert into item_id ( iid, uid, sid, service ) values ( %d, %d, '%s','%s' )",
-				intval($post_id),
-				intval($channel['channel_id']),
-				dbesc(($pagetitle) ? $pagetitle : substr($mid,0,16)),
-				dbesc($page_type)
-			);
-		}
 	}
 }
 
